@@ -74,8 +74,6 @@ StoneGame.prototype.showFilledPits = function(pitsArray, pitElement, bigPitEleme
 
 $(function (){
 
-
-
       game.start();
 });
 
