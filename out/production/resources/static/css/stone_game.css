@@ -1,0 +1,73 @@
+.board {
+  height: 500px;
+  background-color: #c2b280;
+}
+.board .left-big-pit,
+.board .right-big-pit {
+  background-color: red;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.board .pits {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.board .board-top,
+.board .board-bottom {
+  height: 250px;
+  background-color: #d3a2ae;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.board .pit,
+.board .big-pit,
+.board .left-big-pit .pit,
+.board .right-big-pit .pit {
+  border-radius: 100%;
+  background-color: white;
+  text-align: center;
+  position: relative;
+}
+.board .pit {
+  height: 140px;
+  width: 140px;
+  padding: 20px;
+  cursor: pointer;
+}
+.board .pit .stones {
+  top: 25%;
+}
+.board .big-pit,
+.board .left-big-pit .pit,
+.board .right-big-pit .pit {
+  height: 400px;
+  width: 200px;
+  padding: 40px;
+}
+.board .big-pit .stones,
+.board .left-big-pit .pit .stones,
+.board .right-big-pit .pit .stones {
+  top: 45%;
+}
+.board .stones {
+  position: absolute;
+  right: 0%;
+}
+.board .stone {
+  border-radius: 100%;
+  background-color: black;
+  height: 20px;
+  width: 20px;
+  margin: 0 5px;
+  display: inline-block;
+}
+.board hr {
+  color: black;
+  margin: 0;
+}
