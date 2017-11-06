@@ -54,7 +54,7 @@ public class Board {
     }
 
     private void robStonesFromOtherPit(@NotNull Pit currentPit, int pitIndex) {
-        Pit opponentsPit = pitList.get(pitList.size() - pitIndex - 1);
+        Pit opponentsPit = pitList.get(pitList.size() - pitIndex - 2);
         currentPit.setStoneCount(currentPit.getStoneCount() + opponentsPit.getStoneCount());
         opponentsPit.setStoneCount(0);
     }

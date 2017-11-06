@@ -14,7 +14,7 @@ public class GameController {
 
     @RequestMapping(value = "/game", method = RequestMethod.GET)
     public Game game(
-            @RequestParam(value = "p1", defaultValue = "Player 2") String p1,
+            @RequestParam(value = "p1", defaultValue = "Player 1") String p1,
             @RequestParam(value = "p2", defaultValue = "Player 2") String p2) {
         game = GameFactory.provideGame(p1, p2);
         return game;
