@@ -14,18 +14,22 @@ StoneGame.prototype.clickOnPit = function(pitId) {
     var url = this.baseUrl + "move/" + pitId.replace('pit-','');
     var data = this.makeAjaxCall(url, "get", function(data) {
         that.drawBoard(data);
+    }, function (data) {
+        that.showErrorMessage(data);
     });
 }
 
 
 StoneGame.prototype.drawBoard = function(data) {
     // Erase board
-    $(".board-bottom").html('');
-    $(".right-big-pit").html('');
-    $(".board-top") .html('');
-    $(".left-big-pit").html('');
+    $('.board-bottom').html('');
+    $('.right-big-pit').html('');
+    $('.board-top').html('');
+    $('.left-big-pit').html('');
+    $('.error-message').text('');
 
     // Set players' names
+    $('.current-player-name').text("The current player is: " + data.currentPlayer.name);
     $('.player-1-name').text(data.player1.name);
     $('.player-2-name').text(data.player2.name);
 
@@ -46,12 +50,13 @@ StoneGame.prototype.addNewPit = function(pit, element, pitIndex) {
     });
 }
 
-StoneGame.prototype.makeAjaxCall = function(url, callType, callback) {
+StoneGame.prototype.makeAjaxCall = function(url, callType, successCallback, errorCallback) {
     $.ajax({
         url,
         type: callType,
         dataType: 'json',
-        success: callback
+        success: successCallback,
+        error: errorCallback
     });
 };
 
@@ -82,6 +87,10 @@ StoneGame.prototype.showFilledPits = function(pitsArray, pitElement, bigPitEleme
     }
 
     return result;
+}
+
+StoneGame.prototype.showErrorMessage = function (errorData) {
+    $('.error-message').text(errorData.responseJSON.message);
 }
 
 $(function (){

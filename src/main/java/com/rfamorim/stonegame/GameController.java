@@ -21,11 +21,12 @@ public class GameController {
     }
 
     @RequestMapping(value = "/move/{pitIndex}")
-    public Game move(@PathVariable int pitIndex, HttpServletResponse response) {
+    public Game move(@PathVariable int pitIndex, HttpServletResponse response) throws java.io.IOException {
         try {
             game.play(pitIndex);
         } catch (InvalidParameterException e) {
-            response.setStatus(422);
+            String errorMessage = e.getMessage();
+            response.sendError(422, errorMessage);
             e.printStackTrace();
         }
         return game;

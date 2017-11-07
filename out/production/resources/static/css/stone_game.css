@@ -7,6 +7,7 @@
 .board {
   height: 500px;
   background-color: #c2b280;
+  margin-top: 100px;
 }
 .board .left-big-pit,
 .board .right-big-pit {

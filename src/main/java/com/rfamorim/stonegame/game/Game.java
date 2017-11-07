@@ -14,7 +14,7 @@ public class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;
-        currentPlayer = player1;
+        this.currentPlayer = player1;
     }
 
     public Player getPlayer1() {
@@ -36,6 +36,7 @@ public class Game {
     public void play(int pitIndex) throws InvalidParameterException {
         board.validatePitIndex(pitIndex, currentPlayer);
         Pit lastPit = board.moveStones(pitIndex, currentPlayer);
+
         if (!(board.isPitFromPlayer(lastPit, currentPlayer) && lastPit.getBigPit())) {
             toggleCurrentPlayer();
         }
