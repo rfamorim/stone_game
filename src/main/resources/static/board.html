@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>StoneGame - Rodrigo Amorim</title>
+    <title>StoneGame by Rodrigo Amorim</title>
     <link href="/css/stone_game.css" rel="stylesheet">
     <link href="/css/foundation.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
@@ -16,35 +16,50 @@
 
     <div class="board">
         <div class="grid-x">
-            <div class="cell large-2">
-                <div class="left-big-pit">
-                </div>
-
+            <div class="cell large-8 large-offset-2">
                 <p class="player-2-name"></p>
             </div>
+        </div>
 
-            <div class="cell large-8">
+        <div class="grid-x">
+            <div class="cell large-2 small-1">
+                <div class="left-big-pit">
+                </div>
+            </div>
+
+            <div class="cell large-8 small-10">
                 <div class="pits">
                     <div class="board-top">
                     </div>
 
-                    <hr>
                     <div class="board-bottom">
                     </div>
                 </div>
             </div>
 
-            <div class="cell large-2">
+            <div class="cell large-2 small-1">
                 <div class="right-big-pit">
                 </div>
+            </div>
+        </div>
+
+        <div class="grid-x">
+            <div class="cell large-8 large-offset-2">
                 <p class="player-1-name"></p>
             </div>
-
         </div>
     </div>
+
+    <div class="grid-x under-board">
+        <div class="cell large-11">
+            <h3 class="error-message"></h3>
+            <h3 class="winner-player-message"></h3>
+        </div>
+        <div class="cell large-1">
+            <a href="board.html" class="button">Reset Game</a>
+        </div>
+    </div>
+
 </div>
-
-<h1 class="error-message"></h1>
-
 </body>
 </html>

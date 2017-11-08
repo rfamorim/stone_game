@@ -9,7 +9,7 @@ public class Board {
 
     public static final String BIG_PIT_ERROR = "Can't play big pit";
     public static final String EMPTY_PIT_ERROR = "Empty pit";
-    public static final String PIT_OWNER_ERROR = "Not player's pit";
+    public static final String PIT_OWNER_ERROR = "Not current player's pit";
 
     private final List<Pit> pitList;
 
@@ -72,11 +72,51 @@ public class Board {
         }
     }
 
+    public Player getWinnerPlayer(@NotNull Player player1, @NotNull Player player2) {
+        Player winnerPlayer;
+
+        winnerPlayer = moveStonesToBigPit(player1, player2);
+        return winnerPlayer;
+    }
+
+    public Player moveStonesToBigPit(@NotNull Player player1, @NotNull Player player2) {
+        Pit pit;
+        int player1TotalStoneCount = 0;
+        int player2TotalStoneCount = 0;
+
+        for (int i = 0; i < pitList.size(); i++) {
+            pit = pitList.get(i);
+
+            if (pit.getPlayer().equals(player1)) {
+                player1TotalStoneCount += pit.getStoneCount();
+
+                if (!pit.getBigPit()) {
+                    pit.setStoneCount(0);
+                } else {
+                    pit.setStoneCount(player1TotalStoneCount);
+                }
+            } else {
+                player2TotalStoneCount += pit.getStoneCount();
+
+                if (!pit.getBigPit()) {
+                    pit.setStoneCount(0);
+                } else {
+                    pit.setStoneCount(player2TotalStoneCount);
+                }
+            }
+
+        }
+
+        if (player1TotalStoneCount > player2TotalStoneCount) {
+            return player1;
+        } else {
+            return player2;
+        }
+    }
+
     public static class CircularArrayList<T> extends ArrayList<T> {
         @Override
-        public T get(int index) {
-            return super.get(index % size());
-        }
+        public T get(int index) { return super.get(index % size()); }
     }
 
 }

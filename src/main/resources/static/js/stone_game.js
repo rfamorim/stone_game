@@ -27,6 +27,7 @@ StoneGame.prototype.drawBoard = function(data) {
     $('.board-top').html('');
     $('.left-big-pit').html('');
     $('.error-message').text('');
+    $('.winner-player-message').text('');
 
     // Set players' names
     $('.current-player-name').text("The current player is: " + data.currentPlayer.name);
@@ -39,7 +40,16 @@ StoneGame.prototype.drawBoard = function(data) {
     this.showFilledPits(player1Pits, $(".board-bottom"), $(".right-big-pit"), false);
 
     var player2Pits = data.board.pitList.slice(numberOfPits/2);
-    return this.showFilledPits(player2Pits, $(".board-top"), $(".left-big-pit"), true);
+    this.showFilledPits(player2Pits, $(".board-top"), $(".left-big-pit"), true);
+
+    if (data.winnerPlayer != null) {
+        $('.winner-player-message').text("The winner is " + data.winnerPlayer.name);
+        $("[id^='pit-']").on('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+        });
+    }
+    return;
 }
 
 StoneGame.prototype.addNewPit = function(pit, element, pitIndex) {
@@ -90,11 +100,10 @@ StoneGame.prototype.showFilledPits = function(pitsArray, pitElement, bigPitEleme
 }
 
 StoneGame.prototype.showErrorMessage = function (errorData) {
-    $('.error-message').text(errorData.responseJSON.message);
+    $('.error-message').text('Error: ' + errorData.responseJSON.message);
 }
 
 $(function (){
-
       game.start();
 });
 

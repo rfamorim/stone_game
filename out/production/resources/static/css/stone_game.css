@@ -1,3 +1,7 @@
+body {
+  padding-top: 40px !important;
+}
+
 .container {
   display: block;
   margin: auto;
@@ -6,8 +10,7 @@
 
 .board {
   height: 500px;
-  background-color: #c2b280;
-  margin-top: 100px;
+  /*background-color: #c2b280;*/
 }
 .board .left-big-pit,
 .board .right-big-pit {
@@ -60,7 +63,7 @@
 .board .big-pit .stones,
 .board .left-big-pit .pit .stones,
 .board .right-big-pit .pit .stones {
-  top: 45%;
+  /*top: 45%;*/
 }
 .board .stones {
   position: absolute;
@@ -74,7 +77,45 @@
   margin: 0 5px;
   display: inline-block;
 }
-.board hr {
-  color: black;
-  margin: 0;
+.board .board-top {
+    border-style: solid;
+    border-width: 0 thick thick 0;
+    border-color: black;
+}
+.board .board-bottom {
+    border-style: solid;
+    border-width: 0 0 0 thick;
+    border-color: black;
+}
+
+.current-player-name {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.error-message {
+  color: red;
+}
+
+.player-1-name {
+  text-align: left;
+  margin: 0 5px;
+}
+
+.player-2-name {
+  text-align: right;
+  margin: 0 5px;
+}
+
+.under-board {
+  margin-top: 60px;
+}
+
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
 }
