@@ -42,11 +42,48 @@ public class BoardTests {
         MockitoAnnotations.initMocks(this);
         board = GameFactory.provideBoard(TOTAL_PITS, STONE_PER_PIT, player1, player2);
     }
-
-    //TODO: test moving stones correctly
+    
     @Test
     public void test_move_stone() {
+        // First move: player1 at pit-0
         board.moveStones(0, player1);
+        assertEquals(board.getPitList().get(0).getStoneCount(), 0);
+        assertEquals(board.getPitList().get(1).getStoneCount(), STONE_PER_PIT + 1);
+        assertEquals(board.getPitList().get((TOTAL_PITS/2) - 2).getStoneCount(), STONE_PER_PIT + 1);
+        assertEquals(board.getPitList().get((TOTAL_PITS/2) - 1).getStoneCount(), 1);
+
+        assertEquals(board.getPitList().get(TOTAL_PITS/2).getStoneCount(), STONE_PER_PIT);
+        assertEquals(board.getPitList().get(TOTAL_PITS - 1).getStoneCount(), 0);
+
+        // Second move: player1 at pit-1
+        board.moveStones(1, player1);
+        assertEquals(board.getPitList().get(0).getStoneCount(), 0);
+        assertEquals(board.getPitList().get(1).getStoneCount(), 0);
+        assertEquals(board.getPitList().get((TOTAL_PITS/2) - 2).getStoneCount(), STONE_PER_PIT + 2);
+        assertEquals(board.getPitList().get((TOTAL_PITS/2) - 1).getStoneCount(), 2);
+
+        assertEquals(board.getPitList().get(TOTAL_PITS/2).getStoneCount(), STONE_PER_PIT + 1);
+        assertEquals(board.getPitList().get(TOTAL_PITS - 1).getStoneCount(), 0);
+
+        // Third move: player2 at pit-{TOTAL_PITS/2}
+        board.moveStones(TOTAL_PITS/2, player2);
+        assertEquals(board.getPitList().get(0).getStoneCount(), 1);
+        assertEquals(board.getPitList().get(1).getStoneCount(), 0);
+        assertEquals(board.getPitList().get((TOTAL_PITS/2) - 2).getStoneCount(), STONE_PER_PIT + 2);
+        assertEquals(board.getPitList().get((TOTAL_PITS/2) - 1).getStoneCount(), 2);
+
+        assertEquals(board.getPitList().get(TOTAL_PITS/2).getStoneCount(), 0);
+        assertEquals(board.getPitList().get(TOTAL_PITS - 1).getStoneCount(), 1);
+
+        // Fourth move: player1 at pit-{(TOTAL_PITS/2) - 2}. When completes a cycle and should not change the player2's bitPit count
+        board.moveStones((TOTAL_PITS/2) - 2, player1);
+        assertEquals(board.getPitList().get(0).getStoneCount(), 2);
+        assertEquals(board.getPitList().get(1).getStoneCount(), 0);
+        assertEquals(board.getPitList().get((TOTAL_PITS/2) - 2).getStoneCount(), 0);
+        assertEquals(board.getPitList().get((TOTAL_PITS/2) - 1).getStoneCount(), 3);
+
+        assertEquals(board.getPitList().get(TOTAL_PITS/2).getStoneCount(), 1);
+        assertEquals(board.getPitList().get(TOTAL_PITS - 1).getStoneCount(), 1);
     }
 
     @Test
@@ -93,7 +130,6 @@ public class BoardTests {
         }
     }
 
-    // TODO: test moveStonesToBigPit
     @Test
     public void test_end_of_game_moving_stones() {
         board = GameFactory.provideEndGameBoard(TOTAL_PITS, STONE_PER_PIT, player1, player2);
