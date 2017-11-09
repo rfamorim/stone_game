@@ -93,4 +93,16 @@ public class BoardTests {
         }
     }
 
+    // TODO: test moveStonesToBigPit
+//    @Test
+//    public void test_end_of_game_moving_stones() {
+//        when(pits.get(anyInt()).getBigPit()).thenReturn(true);
+//    }
+
+    @Test
+    public void test_get_winner_player_method() {
+        when(board.moveStonesToBigPit(player1, player2)).thenReturn(player2);
+        assertEquals(board.getWinnerPlayer(player1, player2), player2);
+    }
+
 }

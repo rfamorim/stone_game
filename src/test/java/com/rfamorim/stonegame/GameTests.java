@@ -17,8 +17,8 @@ import static org.mockito.Mockito.when;
 
 public class GameTests {
 
-    private static final String PLAYER1 = "LUKE";
-    private static final String PLAYER2 = "YODA";
+    private static final String PLAYER1 = "ZICO";
+    private static final String PLAYER2 = "PELÉ";
 
     private Game game;
     @Mock
@@ -26,11 +26,19 @@ public class GameTests {
     @Mock
     private Pit pit;
 
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        game = GameFactory.provideGame(PLAYER1, PLAYER2, board);
+    }
+
     @Test
     public void test_create_game() {
         assertEquals(game.getPlayer1().getName(), PLAYER1);
         assertEquals(game.getPlayer2().getName(), PLAYER2);
         assertEquals(game.getPlayer1(), game.getCurrentPlayer());
+        assertEquals(game.getCurrentPlayer().getName(), PLAYER1);
+        assertEquals(game.getWinnerPlayer(), null);
     }
 
     @Test
@@ -90,12 +98,6 @@ public class GameTests {
             e.printStackTrace();
         }
         assertEquals(game.getPlayer2(), game.getCurrentPlayer());
-    }
-
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        game = GameFactory.provideGame(PLAYER1, PLAYER2, board);
     }
 
 }
