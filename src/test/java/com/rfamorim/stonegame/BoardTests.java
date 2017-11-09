@@ -75,8 +75,8 @@ public class BoardTests {
 
     @Test
     public void test_board_is_created_correctly() {
-        // the list must have 6 pits and a big pit for player 1, the 7th a big pit for player two and the rest small
-        // pits for player 2
+        // the list must have 6 pits and a big pit for player 1, the 7th. a big pit(the last one) for player two and the rest small
+        // pits for player 2.
         int half = TOTAL_PITS / 2 - 1;
         List<Pit> pitList = board.getPitList();
         Pit pit;
@@ -94,15 +94,16 @@ public class BoardTests {
     }
 
     // TODO: test moveStonesToBigPit
-//    @Test
-//    public void test_end_of_game_moving_stones() {
-//        when(pits.get(anyInt()).getBigPit()).thenReturn(true);
-//    }
+    @Test
+    public void test_end_of_game_moving_stones() {
+        board = GameFactory.provideEndGameBoard(TOTAL_PITS, STONE_PER_PIT, player1, player2);
+        assertEquals(board.moveStonesToBigPit(player1, player2), player1);
+    }
 
     @Test
     public void test_get_winner_player_method() {
-        when(board.moveStonesToBigPit(player1, player2)).thenReturn(player2);
-        assertEquals(board.getWinnerPlayer(player1, player2), player2);
+        board = GameFactory.provideEndGameBoard(TOTAL_PITS, STONE_PER_PIT, player1, player2);
+        assertEquals(board.getWinnerPlayer(player1, player2), player1);
     }
 
 }

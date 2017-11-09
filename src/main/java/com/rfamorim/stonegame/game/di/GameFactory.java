@@ -40,4 +40,28 @@ public class GameFactory {
         return new Board(pits);
     }
 
+    public static Board provideEndGameBoard(int totalPits, int stoneCount, Player player1, Player player2) {
+        Board.CircularArrayList<Pit> pits = new Board.CircularArrayList<>();
+        PitBuilder builder = new PitBuilder();
+        boolean bigPit;
+        for (int i = 0; i < totalPits; i++) {
+            bigPit = i == totalPits - 1 || i == totalPits / 2 - 1;
+
+            if (i < totalPits/2) {
+                builder.setBigPit(bigPit)
+                        .setStoneCount(bigPit ? 7 * stoneCount : 0)
+                        .setPlayer(i < totalPits / 2 ? player1 : player2)
+                        .createPit();
+                pits.add(builder.createPit());
+            } else {
+                builder.setBigPit(bigPit)
+                        .setStoneCount(bigPit ? 0 : stoneCount - 1)
+                        .setPlayer(i < totalPits / 2 ? player1 : player2)
+                        .createPit();
+                pits.add(builder.createPit());
+            }
+        }
+        return new Board(pits);
+    }
+
 }
