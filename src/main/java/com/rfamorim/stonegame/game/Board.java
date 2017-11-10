@@ -42,7 +42,7 @@ public class Board {
         }
 
         if (stoppedAtEmptyPit(currentPit, currentPlayer)) {
-            robStonesFromOtherPit(currentPit, nextPit);
+            robStonesFromOtherPit(currentPit, nextPit % pitList.size());
         }
 
         return currentPit;

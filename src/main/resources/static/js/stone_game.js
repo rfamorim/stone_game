@@ -1,17 +1,16 @@
-function StoneGame (baseUrl) {
-    this.baseUrl = baseUrl;
+function StoneGame () {
 }
 
 StoneGame.prototype.start = function() {
     var that = this;
-    this.makeAjaxCall(this.baseUrl + "game", "get", function(data) {
+    this.makeAjaxCall("game", "get", function(data) {
         that.drawBoard(data);
     });
 }
 
 StoneGame.prototype.clickOnPit = function(pitId) {
     var that = this;
-    var url = this.baseUrl + "move/" + pitId.replace('pit-','');
+    var url = "move/" + pitId.replace('pit-','');
     var data = this.makeAjaxCall(url, "get", function(data) {
         that.drawBoard(data);
     }, function (data) {
@@ -104,5 +103,4 @@ $(function (){
     game.start();
 });
 
-var game = new StoneGame("");
-// var game = new StoneGame("http://localhost:8080/");
+var game = new StoneGame();
