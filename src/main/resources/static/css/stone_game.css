@@ -51,7 +51,10 @@ body {
   cursor: pointer;
 }
 .board .pit .stones {
+  position: absolute;
+  right: 0%;
   top: 25%;
+  padding: 0 10px;
 }
 .board .big-pit,
 .board .left-big-pit .pit,
@@ -60,20 +63,11 @@ body {
   width: 200px;
   padding: 40px;
 }
-.board .big-pit .stones,
-.board .left-big-pit .pit .stones,
-.board .right-big-pit .pit .stones {
-  /*top: 45%;*/
-}
-.board .stones {
-  position: absolute;
-  right: 0%;
-}
 .board .stone {
   border-radius: 100%;
   background-color: black;
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
   margin: 0 5px;
   display: inline-block;
 }
