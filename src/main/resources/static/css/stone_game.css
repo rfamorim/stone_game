@@ -112,3 +112,14 @@ a.button {
   text-decoration: none;
   color: initial;
 }
+
+.winner-player-message {
+  text-align: center;
+  color: lawngreen;
+  font-weight: bold;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}

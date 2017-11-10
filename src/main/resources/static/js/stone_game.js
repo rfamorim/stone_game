@@ -101,7 +101,8 @@ StoneGame.prototype.showErrorMessage = function (errorData) {
 }
 
 $(function (){
-      game.start();
+    game.start();
 });
 
-var game = new StoneGame("http://localhost:8080/");
+var game = new StoneGame("");
+// var game = new StoneGame("http://localhost:8080/");
