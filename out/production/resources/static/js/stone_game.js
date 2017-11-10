@@ -44,6 +44,7 @@ StoneGame.prototype.drawBoard = function(data) {
 
     if (data.winnerPlayer != null) {
         $('.winner-player-message').text("The winner is " + data.winnerPlayer.name);
+        $("[id^='pit-']").css("pointer-events", "none");
     }
     return;
 }

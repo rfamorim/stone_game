@@ -42,7 +42,7 @@ public class BoardTests {
         MockitoAnnotations.initMocks(this);
         board = GameFactory.provideBoard(TOTAL_PITS, STONE_PER_PIT, player1, player2);
     }
-    
+
     @Test
     public void test_move_stone() {
         // First move: player1 at pit-0
